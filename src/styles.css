@@ -107,3 +107,24 @@ footer {
     justify-content: center;
     color: var(--main-color);
 }
+
+/* Media queries */
+@media (max-width: 600px) {
+    .search-section .title {
+        font-size: 3.5rem;
+        text-align: center;
+    }
+
+    .search-section .intro-description {
+        font-size: 1rem;
+    }
+
+    .search-intro .input-intro {
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .search-intro button {
+        padding: 15px;
+    }
+}
