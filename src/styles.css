@@ -11,6 +11,15 @@
     --error-color: #e63946;
 }
 
+a {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+
 body {
     background-color: var(--main-color);
     font-family: 'Nunito';
@@ -21,16 +30,21 @@ body {
 
 main {
     flex: 1;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
+/* Intro section */
 main .intro {
     color: white;
     padding-top: 35vh;
     /* transition: padding-top 0.8s ease-in-out; */
     display: flex;
     justify-content: center;
+}
+
+.disapear {
+    animation: upAndOut 0.8s ease-in forwards;
 }
 
 .intro .search-section {
@@ -83,7 +97,7 @@ main .intro {
     font-weight: bold;
 }
 
-.search-intro .error {
+.error {
     color: var(--error-color);
 }
 
@@ -100,6 +114,399 @@ main .intro {
     color: var(--secondary-color);
 }
 
+/* Results section */
+main .results {
+    padding: 20px 10px;
+    max-width: 1300px;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+main .results.show-results {
+    display: flex;
+    animation: upAndIn 0.8s ease-out forwards;
+}
+
+.results .weather-section {
+    display: flex;
+    gap: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    align-items: stretch;
+}
+
+.weather-section .left-side {
+    background-color: #669bbc68;
+    flex: 1;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.left-side .search-main {
+    position: relative;
+    margin-bottom: 7px;
+}
+
+.search-main .search-content {
+    display: flex;
+    gap: 5px;
+}
+
+.search-main .search-content .input-main {
+    flex: 1;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.search-main button {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-main button:hover {
+    background-color: var(--secondary-color-hover);
+}
+
+.search-main .error {
+    color: var(--error-color);
+    position: absolute;
+    left: 5px;
+}
+
+.left-side .main-card {
+    flex: 1;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 100%;
+}
+
+.main-card .info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.info .general-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 70%;
+    height: 100%;
+}
+
+.general-info .zone {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.general-info .date {
+    font-weight: 200;
+    font-size: 0.8rem;
+}
+
+.info .temperature-type {
+    align-self: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.temperature-type .type {
+    flex: 1;
+    cursor: pointer;
+    padding: 0 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.temperature-type .active {
+    background-color: #5a5959;
+    color: white;
+    pointer-events: none;
+}
+
+.celcius {
+    border-bottom: 1px solid white;
+}
+
+.main-card .main-icon {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-icon svg,
+.main-icon img {
+    width: 100%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.main-card .temperature {
+    font-size: 5.5rem;
+}
+
+.main-card .temperature-info {
+    font-size: 1.2rem;
+}
+
+/* Right side */
+
+.weather-section .right-side {
+    flex: 1;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+    gap: 10px;
+}
+
+.right-side .forecast {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.06);
+    max-width: 100%;
+    color: white;
+    height: auto;
+}
+
+.forecast .title {
+    padding: 5px 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.forecast .days {
+    flex: 1;
+    display: flex;
+    /* grid-template-columns: repeat(6, minmax(80px, 1fr)); */
+    gap: 20px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.days .day {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    cursor: pointer;
+    height: 200px;
+}
+
+.days .day:hover {
+    background-color: #0f2027;
+}
+
+.weather-section .left-side,
+.weather-section .right-side {
+    flex: 1;
+    min-width: 0;
+}
+
+.day .day-icon {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.day-icon svg,
+.day-icon img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.day .day-info {
+    font-size: 0.8rem;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day .temperature {
+    font-size: 0.8rem;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today-info {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.06);
+    max-width: 100%;
+    color: white;
+    flex: 1;
+}
+
+.today-info .day-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.day-details .title {
+    padding: 5px 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.day-details .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.details .detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+.details .detail:nth-child(-n + 5) {
+    border-bottom: 2px solid #131319;
+}
+
+.detail .detail-info {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.detail-info .detail-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.detail-icon svg,
+.detail-icon img {
+    height: 100%;
+    width: 100%;
+}
+
+/* icons */
+.sunrise-icon {
+    color: #ffd60a;
+}
+
+.sunset-icon {
+    color: #fb5607;
+}
+
+.wind-icon {
+    color: #3a7bd5;
+}
+
+.uv-index-icon {
+    color: #134074;
+}
+
+.pressure-icon {
+    color: #c32f27;
+}
+
+.humidity-icon {
+    color: #cad182;
+}
+
+/* card backgrounds*/
+
+/* 1. Días despejados (Cielo azul vibrante y cálido) */
+.bg-clear-day {
+    color: #1a1a1a;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* 2. Noches despejadas (Azul muy oscuro, casi medianoche) */
+.bg-clear-night {
+    color: #cfdef3;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+/* 3. Días parcialmente nublados (Azul más suave y relajado) */
+.bg-partly-cloudy-day {
+    background: linear-gradient(135deg, #66a6ff 0%, #89f7fe 100%);
+}
+
+/* 4. Noches parcialmente nubladas (Azul apagado con tonos grisáceos) */
+.bg-partly-cloudy-night {
+    color: white;
+    background: linear-gradient(135deg, #243949 0%, #517fa4 100%);
+}
+
+/* 5. Nublado total, Niebla o Viento (Gris neutro y melancólico) */
+.bg-cloudy,
+.bg-fog,
+.bg-wind {
+    background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+}
+
+/* 6. Lluvia y chubascos (Tonos agua oscuros y húmedos) */
+.bg-rain,
+.bg-showers-day,
+.bg-showers-night {
+    background: linear-gradient(135deg, #3a7bd5 0%, #3a6073 100%);
+}
+
+/* 7. Tormentas eléctricas (Gris casi negro, muy pesado) */
+.bg-thunder-rain,
+.bg-thunder-showers-day,
+.bg-thunder-showers-night {
+    color: white;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+}
+
+/* 8. Nieve (Tonos gélidos y blanquecinos) */
+.bg-snow,
+.bg-snow-showers-day,
+.bg-snow-showers-night {
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    color: #1a1a1a;
+}
+/* Footer */
 footer {
     background-color: var(--secondary-color);
     padding: 0.2rem;
@@ -108,8 +515,29 @@ footer {
     color: var(--main-color);
 }
 
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    background-color: var(--main-color);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader svg {
+    width: 100px;
+    height: 100px;
+    animation: spin 3s linear infinite;
+}
+
 /* Media queries */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .search-section .title {
         font-size: 3.5rem;
         text-align: center;
@@ -126,5 +554,79 @@ footer {
 
     .search-intro button {
         padding: 15px;
+    }
+
+    main .results {
+        padding: 10px;
+        margin: 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .search-main .search-content .input-main {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .results .weather-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .days .day {
+        min-width: 85px;
+    }
+    .main-card .temperature {
+        font-size: 4rem;
+    }
+
+    .weather-section .right-side {
+        gap: 10px;
+        width: 100%;
+    }
+
+    .forecast .days {
+        flex: 1;
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+}
+
+/* Keyframes */
+@keyframes upAndOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-300px);
+        opacity: 0;
+    }
+}
+
+@keyframes upAndIn {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
