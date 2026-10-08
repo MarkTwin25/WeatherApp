@@ -124,6 +124,7 @@ main .results {
     justify-content: center;
     align-items: center;
     display: none;
+    width: 100%;
 }
 
 main .results.show-results {
@@ -137,6 +138,7 @@ main .results.show-results {
     border-radius: 5px;
     padding: 10px;
     align-items: stretch;
+    width: 100%;
 }
 
 .weather-section .left-side {
@@ -559,7 +561,7 @@ footer {
     main .results {
         padding: 10px;
         margin: 0;
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
     }
 
